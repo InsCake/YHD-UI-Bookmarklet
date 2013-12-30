@@ -60,7 +60,7 @@ function postImg(file) { //上传图片函数
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
             //do somthing width your respose.
-            alert('success');
+            alert(xhr.responseText);
         }
     };
 
