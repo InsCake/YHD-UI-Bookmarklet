@@ -26,7 +26,7 @@
 		, 'z-index:999999'
 		, 'background-color:#fff;'
 	].join(';');
-	i.src = 'imageUpload_page.html';
+	i.src = 'http://inscake.github.io/YHD-UI-Bookmarklet/imageUpload/imageUpload_page.html';
 	i.onload = function () {
 		i.focus();
 	};
