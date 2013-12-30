@@ -18,15 +18,17 @@ getImg_box.addEventListener('drop', function(e) { //拖拽放下，执行上传�
     e.preventDefault();
     imgs = e.dataTransfer.files;
 
-    var WINURL = window.URL || window.webkitURL;
-    var src = WINURL.createObjectURL(imgs[0]);
+    /*var WINURL = window.URL || window.webkitURL;
+    var src = WINURL.createObjectURL(imgs[0]);*/
+
+    var src = postImg(imgs[0]); //调用上传函数
     setTimeout(function() {
         getImg_box.innerHTML = '<img src="' + src + '">';
         imgUrlInput.attr('value', src).show();
         WINURL.revokeObjectURL(src);
     }, 300);
 
-    postImg(imgs[0]); //调用上传函数
+    
 
     $('#getImg_box').animate({
         'height': '465px',
@@ -60,7 +62,7 @@ function postImg(file) { //上传图片函数
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
             //do somthing width your respose.
-            alert(xhr.responseText);
+            return xhr.responseText;
         }
     };
 
