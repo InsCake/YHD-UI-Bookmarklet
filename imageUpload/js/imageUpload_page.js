@@ -64,7 +64,7 @@ function postImg(file) { //上传图片函数
         }
     };
 
-    xhr.open('POST', url); //url 是表单的提交地址。
+    xhr.open('POST', "http://10.161.164.222:8070/tsmm-trunk/cmsPutting/imageUpload.do"); //url 是表单的提交地址。
     xhr.send(formdata);
 }
 
