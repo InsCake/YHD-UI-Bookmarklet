@@ -1,7 +1,8 @@
 var getImg_box = document.getElementById('getImg_box'),
     imgs,
     upload_btn = $('.upload_btn'),
-    imgUrlInput = $('.getImgUrl');
+    imgUrlInput = $('.getImgUrl'),
+    imgUrl;
 
 getImg_box.addEventListener('dragenter', function(e) {
     e.preventDefault();
@@ -21,14 +22,12 @@ getImg_box.addEventListener('drop', function(e) { //拖拽放下，执行上传�
     /*var WINURL = window.URL || window.webkitURL;
     var src = WINURL.createObjectURL(imgs[0]);*/
 
-    var src = postImg(imgs[0]); //调用上传函数
-    setTimeout(function() {
+    postImg(imgs[0], function() {
+        var src = imgUrl;
         getImg_box.innerHTML = '<img src="' + src + '">';
         imgUrlInput.attr('value', src).show();
         WINURL.revokeObjectURL(src);
-    }, 300);
-
-    
+    }); //调用上传函数
 
     $('#getImg_box').animate({
         'height': '465px',
@@ -62,12 +61,13 @@ function postImg(file) { //上传图片函数
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
             //do somthing width your respose.
-            return xhr.responseText;
+            imgUrl = xhr.responseText;
         }
     };
 
     xhr.open('POST', "http://10.161.164.222:8070/tsmm-trunk/cmsPutting/imageUpload.do"); //url 是表单的提交地址。
     xhr.send(formdata);
+
 }
 
 
